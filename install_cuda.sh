@@ -27,8 +27,8 @@ sudo apt-get install -y nvidia-driver-515 || {
 
 # Download and install CUDA Toolkit (adjust version as needed)
 log "Downloading and installing CUDA Toolkit..."
-wget https://developer.download.nvidia.com/compute/cuda/11.7.0/local_installers/cuda_11.7.0_515.43.04_linux.run
-sudo sh cuda_11.7.0_515.43.04_linux.run --silent --toolkit --samples --driver
+wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda_12.2.0_535.54.03_linux.run
+sudo sh cuda_12.2.0_535.54.03_linux.run --silent --toolkit --samples --driver
 
 # Set up environment variables
 log "Setting up environment variables..."
@@ -66,7 +66,7 @@ sudo mkdir -p /usr/local/cuda/samples
 
 # Install CUDA samples
 log "Installing CUDA samples..."
-sudo apt-get install -y cuda-samples-11-7
+sudo apt-get install -y cuda-samples-12-2
 
 # Compile CUDA samples
 log "Compiling CUDA samples..."

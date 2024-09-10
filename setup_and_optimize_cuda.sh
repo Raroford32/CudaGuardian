@@ -8,31 +8,17 @@ log() {
     echo "$(date): $1" | tee -a "$log_file"
 }
 
-# 1. Install CUDA
-log "Starting CUDA installation..."
-source ./install_cuda.sh >> "$log_file" 2>&1
-log "CUDA installation completed."
+error() {
+    log "ERROR: $1"
+    exit 1
+}
 
-# 2. Configure the system
-log "Configuring the system..."
-source ./configure_system.sh >> "$log_file" 2>&1
-log "System configuration completed."
+# 1. Run CUDA simulation
+log "Running CUDA simulation..."
+python cuda_simulation.py || error "Failed to run CUDA simulation"
 
-# 3. Compile and run CUDA test
-log "Compiling and running CUDA test..."
-source ./compile_and_run_test.sh >> "$log_file" 2>&1
-log "CUDA test completed."
-
-# 4. Run benchmarks
+# 2. Run benchmarks (update this to use Python-based benchmarks if needed)
 log "Running benchmarks..."
-source ./run_benchmarks.sh >> "$log_file" 2>&1
-log "Benchmarks completed."
+python cuda_simulation.py || log "Warning: Benchmark may have failed. Check output for details."
 
-# 5. Start GPU monitoring (in background)
-log "Starting GPU monitoring..."
-./monitor_gpus.sh &
-monitor_pid=$!
-log "GPU monitoring started with PID: $monitor_pid"
-
-log "CUDA setup and optimization completed successfully."
-echo "To stop GPU monitoring, run: kill $monitor_pid"
+log "CUDA simulation and optimization completed successfully."

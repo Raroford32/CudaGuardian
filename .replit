@@ -23,6 +23,10 @@ args = "Install CUDA"
 task = "workflow.run"
 args = "Setup and Optimize CUDA"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Setup and Optimize CUDA Simulation"
+
 [[workflows.workflow]]
 name = "Run Benchmarks"
 author = "agent"
@@ -47,6 +51,17 @@ args = "nvcc --version && nvidia-smi"
 
 [[workflows.workflow]]
 name = "Setup and Optimize CUDA"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash setup_and_optimize_cuda.sh"
+
+[[workflows.workflow]]
+name = "Setup and Optimize CUDA Simulation"
 author = "agent"
 
 [workflows.workflow.metadata]
