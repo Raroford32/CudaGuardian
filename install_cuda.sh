@@ -60,8 +60,17 @@ else
     fi
 fi
 
+# Create CUDA samples directory if it doesn't exist
+log "Creating CUDA samples directory..."
+sudo mkdir -p /usr/local/cuda/samples
+
 # Install CUDA samples
 log "Installing CUDA samples..."
 sudo apt-get install -y cuda-samples-11-7
+
+# Compile CUDA samples
+log "Compiling CUDA samples..."
+cd /usr/local/cuda/samples
+sudo make
 
 log "CUDA and NVIDIA driver installation complete. A system reboot is recommended."

@@ -49,3 +49,14 @@ https://docs.replit.com/replit-workspace/dependency-management , and don't
 forget to indicate whether you found the documentation helpful at the bottom
 of the page!
 [0m
+Tue 10 Sep 2024 08:31:23 AM UTC: Starting CUDA installation...
+Tue 10 Sep 2024 08:31:23 AM UTC: Updating package list...
+[0;93mTools like apt, brew, and yum which modify system
+dependencies are not directly callable inside Replit. We offer the
+[1;93mSystem Dependencies[0;93m pane for easy dependency management.
+
+For more information, please check
+https://docs.replit.com/replit-workspace/dependency-management , and don't
+forget to indicate whether you found the documentation helpful at the bottom
+of the page!
+[0m

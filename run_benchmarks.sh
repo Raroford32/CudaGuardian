@@ -6,13 +6,6 @@ log() {
     echo "$(date): $1" | tee -a "$log_file"
 }
 
-# Check if CUDA samples are installed
-if [ ! -d "/usr/local/cuda/samples" ]; then
-    log "CUDA samples not found. Attempting to install..."
-    sudo apt-get update
-    sudo apt-get install -y cuda-samples-11-7
-fi
-
 # Function to run a benchmark
 run_benchmark() {
     local dir=$1
@@ -23,7 +16,7 @@ run_benchmark() {
         cd "$dir"
         if [ -f "Makefile" ]; then
             log "Compiling $name..."
-            sudo make > /dev/null 2>&1
+            make > /dev/null 2>&1
         fi
         if [ -x "$cmd" ]; then
             log "Running $name..."
