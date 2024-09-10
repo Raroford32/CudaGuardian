@@ -1,4 +1,4 @@
-modules = ["cuda"]
+modules = ["cuda", "python-3.11"]
 
 [nix]
 channel = "stable-24_05"

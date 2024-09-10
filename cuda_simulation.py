@@ -1,36 +1,38 @@
-import multiprocessing
+import numpy as np
 import time
 
-def vector_add(a, b, c, start, end):
-    for i in range(start, end):
-        c[i] = a[i] + b[i]
+try:
+    import cupy as cp
+    use_cuda = True
+except ImportError:
+    use_cuda = False
+    print("CUDA not available. Using CPU instead.")
+
+def vector_add(a, b):
+    return a + b
 
 def main():
-    n = 1000000
-    a = [1.0] * n
-    b = [2.0] * n
-    c = [0.0] * n
-
-    num_processes = multiprocessing.cpu_count()
-    chunk_size = n // num_processes
-    processes = []
+    n = 10000000  # Increased size for better benchmarking
+    
+    if use_cuda:
+        a = cp.ones(n, dtype=cp.float32)
+        b = cp.ones(n, dtype=cp.float32) * 2
+    else:
+        a = np.ones(n, dtype=np.float32)
+        b = np.ones(n, dtype=np.float32) * 2
 
     start_time = time.time()
 
-    for i in range(num_processes):
-        start = i * chunk_size
-        end = start + chunk_size if i < num_processes - 1 else n
-        p = multiprocessing.Process(target=vector_add, args=(a, b, c, start, end))
-        processes.append(p)
-        p.start()
-
-    for p in processes:
-        p.join()
+    c = vector_add(a, b)
 
     end_time = time.time()
 
+    if use_cuda:
+        c = cp.asnumpy(c)  # Transfer result back to CPU for printing
+
     print(f"First 10 elements of the result: {c[:10]}")
     print(f"Time taken: {end_time - start_time:.4f} seconds")
+    print(f"Using {'CUDA' if use_cuda else 'CPU'}")
 
 if __name__ == "__main__":
     main()
