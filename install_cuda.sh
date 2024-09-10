@@ -60,4 +60,8 @@ else
     fi
 fi
 
+# Install CUDA samples
+log "Installing CUDA samples..."
+sudo apt-get install -y cuda-samples-11-7
+
 log "CUDA and NVIDIA driver installation complete. A system reboot is recommended."
