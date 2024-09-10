@@ -1,0 +1,45 @@
+modules = ["cuda"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Run Benchmarks"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Install CUDA"
+
+[[workflows.workflow]]
+name = "Run Benchmarks"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash run_benchmarks.sh"
+
+[[workflows.workflow]]
+name = "Install CUDA"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "nvcc --version && nvidia-smi"
+
+[deployment]
+run = ["sh", "-c", "bash run_benchmarks.sh"]
