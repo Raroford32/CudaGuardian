@@ -18,22 +18,17 @@ sudo apt-get install -y build-essential linux-headers-$(uname -r)
 
 # Install NVIDIA drivers
 log "Installing NVIDIA drivers..."
-sudo apt-get install -y nvidia-driver-515 || {
-    log "Failed to install NVIDIA drivers. Trying alternative method..."
-    sudo add-apt-repository ppa:graphics-drivers/ppa
-    sudo apt-get update
-    sudo apt-get install -y nvidia-driver-515
-}
+sudo apt-get install -y nvidia-driver-515
 
-# Download and install CUDA Toolkit (adjust version as needed)
+# Download and install CUDA Toolkit
 log "Downloading and installing CUDA Toolkit..."
 wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda_12.2.0_535.54.03_linux.run
 sudo sh cuda_12.2.0_535.54.03_linux.run --silent --toolkit --samples --driver
 
 # Set up environment variables
 log "Setting up environment variables..."
-echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
-echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+echo 'export PATH=/usr/local/cuda-12.2/bin:$PATH' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
 source ~/.bashrc
 
 # Verify installation
@@ -59,18 +54,5 @@ else
         exit 1
     fi
 fi
-
-# Create CUDA samples directory if it doesn't exist
-log "Creating CUDA samples directory..."
-sudo mkdir -p /usr/local/cuda/samples
-
-# Install CUDA samples
-log "Installing CUDA samples..."
-sudo apt-get install -y cuda-samples-12-2
-
-# Compile CUDA samples
-log "Compiling CUDA samples..."
-cd /usr/local/cuda/samples
-sudo make
 
 log "CUDA and NVIDIA driver installation complete. A system reboot is recommended."

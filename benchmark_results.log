@@ -3,3 +3,13 @@ Tue 10 Sep 2024 08:48:00 AM UTC: Error: deviceQuery directory not found.
 Tue 10 Sep 2024 08:48:00 AM UTC: Error: bandwidthTest directory not found.
 Tue 10 Sep 2024 08:48:00 AM UTC: Error: nbody directory not found.
 Tue 10 Sep 2024 08:48:00 AM UTC: Benchmarks complete. Please review the results in benchmark_results.log.
+Tue 10 Sep 2024 08:50:51 AM UTC: CUDA samples not found. Attempting to install...
+Tue 10 Sep 2024 08:50:51 AM UTC: Error: deviceQuery directory not found.
+Tue 10 Sep 2024 08:50:51 AM UTC: Error: bandwidthTest directory not found.
+Tue 10 Sep 2024 08:50:51 AM UTC: Error: nbody directory not found.
+Tue 10 Sep 2024 08:50:51 AM UTC: Benchmarks complete. Please review the results in benchmark_results.log.
+Tue 10 Sep 2024 08:54:25 AM UTC: CUDA samples not found. Attempting to install...
+Tue 10 Sep 2024 08:54:25 AM UTC: Error: deviceQuery directory not found.
+Tue 10 Sep 2024 08:54:25 AM UTC: Error: bandwidthTest directory not found.
+Tue 10 Sep 2024 08:54:25 AM UTC: Error: nbody directory not found.
+Tue 10 Sep 2024 08:54:25 AM UTC: Benchmarks complete. Please review the results in benchmark_results.log.
